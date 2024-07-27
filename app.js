@@ -23,9 +23,10 @@ const winpattern =[
 ];
 
 
-
+let count=0;
 boxes.forEach((box) =>{
     box.addEventListener ('click' ,()=>{
+        count++;
         if(turno){
             box.innerText="O"
             turno=false;
@@ -37,7 +38,12 @@ boxes.forEach((box) =>{
         box.disabled=true;
 
         checkwinner();
+        if(count ===9){
+            drawmatch();
+        }
     }) 
+   
+    
 
 })
 
@@ -68,7 +74,11 @@ const showwinner=(val)=>{
     msgpar.innerText=`Congratulations, winner ${val}`;
     msgcontainer.classList.remove("hide");
     disabledbox();
-
+}
+const drawmatch=()=>{
+    msgpar.innerText=`Match is Draw Restart Game`;
+    msgcontainer.classList.remove("hide");
+    disabledbox();
 
 }
 let checkwinner=()=>{
@@ -89,6 +99,7 @@ let checkwinner=()=>{
                 showwinner(val1);
             }
         }
+
 
      }
 }
